@@ -11,7 +11,7 @@
             @if (!($obj->is_stock))
                 <span
                     class="badge bg-danger position-absolute top-0 end-0 m-2 fs-6">
-                    @lang('app.IsNotStock')
+                    @lang('app.outOfStock')
                 </span>
             @endif
             <img src="{{ asset('img/products/defult.jpg') }}" class="card-img-top p-3" alt="{{ $obj->getTitle() }}">
@@ -46,10 +46,6 @@
                     <span class="small text-muted ms-3"><i class="bi bi-eye"></i> {{ $obj->viewed }}</span>
                 </div>
             </div>
-            <!-- <div class="mt-auto pt-3">
-                <button class="btn btn-primary btn-sm w-100 fw-bold"><i class="bi bi-cart me-1"></i>
-                @lang('app.addCart') </button>
-            </div> -->
         </a>
     </div>
 </div>

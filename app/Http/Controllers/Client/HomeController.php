@@ -28,6 +28,7 @@ class HomeController extends Controller
                 'shopping' => $shopping,
                 'health' => $health,
                 'sport' => $sport,
+                'f_q' => null,
             ]
         );
     }
