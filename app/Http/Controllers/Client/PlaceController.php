@@ -10,19 +10,27 @@ class PlaceController extends Controller
 {
     public function index(Request $request)
     {
-        // categories => Providers/AppServiceProvider.php
+         $request->validate([
+            'q' => ['nullable', 'string', 'max:55'],
+        ]);
 
-        return view('client.places.index')->with(
-            [
-            ]
-        );
+        $f_q = $request->has('q') ? $request->q : null;
+
+
+       $places = Place::when(isset($f_q), function ($query) use ($f_q) {
+            return $query->where(function ($query) use ($f_q) {
+                $query->where('name', 'name', '%' . $f_q . '%');
+            });
+        });
+
+        // categories => Providers/AppServiceProvider.php
     }
 
     public function show($slug)
     {
         $place = Place::where('slug', $slug)->firstOrFail();
 
-        $similarProducts = Place::where('category_id', $place->category_id)
+        $similarPlaces = Place::where('category_id', $place->category_id)
             ->whereNot('slug', $slug)
             ->take(4)
             ->get();
@@ -30,7 +38,7 @@ class PlaceController extends Controller
         return view('client.places.show')->with(
             [
                 'place' => $place,
-                'similarProducts' => $similarProducts,
+                'similarPlaces' => $similarPlaces,
             ]
         );
 

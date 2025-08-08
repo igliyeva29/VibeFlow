@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('slug')->index();
             $table->string('name');
             $table->string('address');
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->string('title_tm')->nullable();
             $table->string('title_ru')->nullable();
             $table->string('phone_number')->nullable();

@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <form action="{{ route('products.index', array_merge(request()->query(), request()->only('category'))) }}"
+            <form action="{{ route('places.index', array_merge(request()->query(), request()->only('category'))) }}"
                 method="get" role="search" class="d-flex my-2 my-lg-0 flex-grow-1 mx-lg-5">
                 <input class="form-control rounded-start-pill border-primary border-end-0 px-4 py-2" type="text" id="q"
                     name="q" value="{{ request('q') }}" placeholder="@lang('app.search')..." aria-label="search">
@@ -23,7 +23,7 @@
                 @endforeach
                 @if(request()->has('q'))
                     <div class="bg-light border border-start-0 border-primary">
-                        <a href="{{ route('products.index', array_merge(request()->except('q'))) }}"
+                        <a href="{{ route('places.index', array_merge(request()->except('q'))) }}"
                             class="btn btn-close mt-2 me-2" aria-label="Close"></a>
                     </div>
                 @endif
@@ -64,8 +64,8 @@
         <div class="d-flex">
             @foreach ($categories as $category)
                 <div class="d-inline me-5">
-                    <div class="btn-group">
-                        <a href="{{ route('products.index', array_merge(request()->query(), ['category' => $category->id])) }}"
+                    <div class="btn-group h-100">
+                        <a href="{{ route('places.index', array_merge(request()->query(), ['category' => $category->id])) }}"
                             class="btn btn-outline-primary">{{ $category->getName() }}</a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,7 +73,7 @@
                         <ul class="dropdown-menu">
                             @foreach ($category->children as $child)
                                 <li><a class="dropdown-item"
-                                        href="{{ route('products.index', array_merge(request()->query(), ['category' => $child->id])) }}">{{ $child->getName() }}</a>
+                                        href="{{ route('places.index', array_merge(request()->query(), ['category' => $child->id])) }}">{{ $child->getName() }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -82,7 +82,7 @@
             @endforeach
             @if(request()->has('category'))
                 <div class="d-inline">
-                    <a href="{{ route('products.index', request()->except('category')) }}"
+                    <a href="{{ route('places.index', request()->except('category')) }}"
                         class="btn btn-sm btn-secondary">@lang('app.clearCategory') </a>
                 </div>
             @endif

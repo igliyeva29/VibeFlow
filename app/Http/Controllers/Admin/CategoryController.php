@@ -87,9 +87,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $brand = Brand::where('id', $id)->firstOrFail();
+        $category = Category::where('id', $id)->firstOrFail();
 
-        $brand->delete();
+        $category->delete();
 
         return to_route('admin.categories.index')->with('success', 'Deleted');
     }
