@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Place;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,20 +11,37 @@ class PlaceController extends Controller
 {
     public function index(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'q' => ['nullable', 'string', 'max:55'],
         ]);
 
         $f_q = $request->has('q') ? $request->q : null;
 
-
-       $places = Place::when(isset($f_q), function ($query) use ($f_q) {
+        $category = Category::when(isset($f_q), function ($query) use ($f_q) {
             return $query->where(function ($query) use ($f_q) {
-                $query->where('name', 'name', '%' . $f_q . '%');
+                $query->where('name', 'like', '%' . $f_q . '%');
             });
-        });
+        })->firstOrFail();
 
+        $places = Place::when(isset($f_q), function ($query) use ($f_q) {
+            return $query->where(function ($query) use ($f_q) {
+                $query->where('name', 'like', '%' . $f_q . '%');
+            });
+        })
+            ->when(isset($category), function ($query) use ($f_q) {
+                return $query->where('category', $f_q);
+            })
+            ->inRandomOrder()
+            ->paginate(28)
+            ->withQueryString();
+        ;
         // categories => Providers/AppServiceProvider.php
+
+        return view('client.places.index')->with(
+            [
+                'places' => $places,
+            ]
+        );
     }
 
     public function show($slug)

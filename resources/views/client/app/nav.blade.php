@@ -1,10 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
     <div class="container-xxl">
         <a class="navbar-brand fw-bold fs-3" href="{{ route('home') }}">@lang('app.appName') </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <form action="{{ route('places.index', array_merge(request()->query(), request()->only('category'))) }}"
                 method="get" role="search" class="d-flex my-2 my-lg-0 flex-grow-1 mx-lg-5">
@@ -37,14 +33,8 @@
                         <i class="bi bi-person me-1"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-cart me-1"></i>
-                        <span class="badge bg-primary text-dark rounded-pill ms-1"></span>
-                    </a>
-                </li>
             </ul>
-            <div class="dropdown ms-auto">
+            <div class="dropdown ms-4">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     {{ app()->getLocale() }}

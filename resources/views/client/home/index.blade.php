@@ -10,7 +10,7 @@
         </div>
         <div class="text-center mt-5">
             <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
-                @lang('app.all') <i class="bi bi-tags-fill"></i>
+                @lang('app.all')
             </a>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="text-center mt-5">
             <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
-                @lang('app.all') <i class="bi bi-tags-fill"></i>
+                @lang('app.all')
             </a>
         </div>
     </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="text-center mt-5">
             <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
-                @lang('app.all') <i class="bi bi-tags-fill"></i>
+                @lang('app.all')
             </a>
         </div>
     </div>

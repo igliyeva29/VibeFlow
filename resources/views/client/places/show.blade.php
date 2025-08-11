@@ -14,9 +14,7 @@
             <div class="col-lg-7">
                 <div class="product-info bg-white rounded-3 p-4 shadow-sm h-100">
                     <h1 class="mb-2 fw-bold">{{ $place->getTitle() }}</h1>
-
                     <div class="d-flex align-items-center mb-3">
-
                         <div class="d-flex align-items-center">
                             <span class="fs-5 text-warning me-1">
                                 @for ($i = 0; $place->rating > $i; $i++)
