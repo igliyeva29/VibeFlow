@@ -41,15 +41,16 @@ class PlaceController extends Controller
             'name' => ['required', 'string', 'max:55'],
             'nameTm' => ['nullable', 'string', 'max:55'],
             'nameRu' => ['nullable', 'string', 'max:55'],
-            'title' => ['required', 'string', 'max:55'],
-            'titleTm' => ['nullable', 'string', 'max:55'],
-            'titleRu' => ['nullable', 'string', 'max:55'],
+            'title' => ['required', 'string', 'max:255'],
+            'titleTm' => ['nullable', 'string', 'max:255'],
+            'titleRu' => ['nullable', 'string', 'max:255'],
             'location' => ['required', 'integer', 'min:1'],
-            'address' => ['required', 'string', 'max:55'],
+            'address' => ['required', 'string', 'max:255'],
             'phoneNumber' => ['required', 'string', 'max:55'],
             'emailAddress' => ['nullable', 'string', 'max:55'],
-            'intagramProfile' => ['nullable', 'string', 'max:55'],
-            'tiktokProfile' => ['nullable', 'string', 'max:55'],
+            'intagramProfile' => ['nullable', 'string', 'max:255'],
+            'tiktokProfile' => ['nullable', 'string', 'max:255'],
+            'image' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048']
         ]);
         Place::create([
             'parent_id' => $request->categoryId ? $request->categoryId : null,

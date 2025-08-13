@@ -22,6 +22,7 @@
                     <th>Email address</th>
                     <th>Isntagram profile</th>
                     <th>Tiktok profile</th>
+                    <th>Updated at</th>
                     <th>@lang('app.settings') <i class="bi bi-gear-fill"></i></th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                         <td>{{ $place->email_address}}</td>
                         <td>{{ $place->instagram_profile}}</td>
                         <td>{{ $place->tiktok_profile}}</td>
+                        <td>{{ $place->updated_at}}</td>
                         <td>
                             <div class="d-flex">
                                 <a href="{{ route('admin.places.edit', $place->id) }}" class="btn btn-warning m-1"> <i

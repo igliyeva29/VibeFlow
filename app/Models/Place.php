@@ -17,9 +17,11 @@ class Place extends Model
 
     protected $fillable = [
         'category_id',
+        'title',
+        'title_tm',
+        'title_ru',
         'location_id',
         'address',
-        'title',
         'phone_number',
         'email_address',
         'isntagram_profile',

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Models\Category;
 use App\Models\Place;
+use App\Models\Banner;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -11,9 +12,9 @@ class HomeController extends Controller
     public function index()
     {   
         // $hotelId = Category::where('name', 'hotel')->firstOrFail();
-        $cafes = Place::where('category_id', 2)->orderBy('created_at', 'desc')->take(4)->get();
-        $education = Place::where('category_id', 3)->orderBy('created_at', 'desc')->take(4)->get();
-        $shopping = Place::where('category_id', 5)->orderBy('created_at', 'desc')->take(4)->get();
+        $cafes = Place::where('category_id', 9)->orderBy('created_at', 'desc')->take(4)->get();
+        $education = Place::where('category_id', 15)->orderBy('created_at', 'desc')->take(4)->get();
+        $shopping = Place::where('category_id', 24)->orderBy('created_at', 'desc')->take(4)->get();
 
         // categories => Providers/AppServiceProvider.php
 
