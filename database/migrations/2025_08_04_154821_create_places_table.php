@@ -14,11 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->ondelete('cascade');
+            $table->string('slug')->index();
             $table->string('title');
             $table->string('title_tm')->nullable();
             $table->string('title_ru')->nullable();
             $table->foreignId('location_id')->constrained()->ondelete('cascade');
-            $table->string('slug')->index();
             $table->string('address');
             $table->string('phone_number')->nullable();
             $table->string('email_address')->nullable();

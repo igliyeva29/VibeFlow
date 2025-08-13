@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Place;
 use App\Models\Category;
 use App\Models\Location;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
@@ -24,10 +25,11 @@ class PlaceController extends Controller
     public function create()
     {
         $categories = Category::whereNull('parent_id')
-            ->orderBy('name')
+            ->with('children')
             ->get();
 
-        $locations = Location::get();
+        $locations = Location::orderBy('name')
+            ->get();
 
         return view('admin.places.create')->with([
             'categories' => $categories,
@@ -37,36 +39,44 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'categoryId' => ['nullable', 'integer', 'min:1'],
-            'name' => ['required', 'string', 'max:55'],
-            'nameTm' => ['nullable', 'string', 'max:55'],
-            'nameRu' => ['nullable', 'string', 'max:55'],
+            'subCategoryId' => ['nullable', 'integer', 'min:1'],
             'title' => ['required', 'string', 'max:255'],
             'titleTm' => ['nullable', 'string', 'max:255'],
             'titleRu' => ['nullable', 'string', 'max:255'],
-            'location' => ['required', 'integer', 'min:1'],
+            'locationId' => ['required', 'integer', 'min:1'],
             'address' => ['required', 'string', 'max:255'],
             'phoneNumber' => ['required', 'string', 'max:55'],
             'emailAddress' => ['nullable', 'string', 'max:55'],
             'intagramProfile' => ['nullable', 'string', 'max:255'],
             'tiktokProfile' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048']
+            'image' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'] //max:2G
         ]);
-        Place::create([
-            'parent_id' => $request->categoryId ? $request->categoryId : null,
-            'name' => $request->name,
-            'name_tm' => $request->nameTm,
-            'name_ru' => $request->nameRu,
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/places', 'public');
+        }
+
+        $newPlace = Place::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->subCategoryId,
+            'slug' => fake()->slug(),
             'title' => $request->title,
             'title_tm' => $request->titleTm,
             'title_ru' => $request->titleRu,
-            'location' => $request->location,
+            'location_id' => $request->locationId,
             'address' => $request->address,
             'phone_number' => $request->phoneNumber,
             'email_address' => $request->emailAddress,
             'instagram_profile' => $request->instagramProfile,
             'tiktok_profile' => $request->tiktokProfile,
+            'image' => $path,
+            'map' => null,
+            'viewed' => 0,
+            'rating' => 0,
+
         ]);
+
+        $newPlace->slug = str($request->title)->slug() . "-" . $newPlace->id;
 
         return to_route('admin.places.index')
             ->with('success', __('app.createdSuccessfully', ['name' => 'Place']));
@@ -85,7 +95,7 @@ class PlaceController extends Controller
         return view('admin.places.edit')
             ->with([
                 'place' => $place,
-                 'category' => $category,
+                'category' => $category,
                 'parents' => $parents,
             ]);
     }

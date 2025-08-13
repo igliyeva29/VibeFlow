@@ -16,7 +16,9 @@ class Place extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'user_id',
         'category_id',
+        'slug',
         'title',
         'title_tm',
         'title_ru',
@@ -26,8 +28,16 @@ class Place extends Model
         'email_address',
         'isntagram_profile',
         'tiktok_profile',
+        'image',
+        'map',
+        'viewed',
+        'rating',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function location()
     {
         return $this->belongsTo(Location::class);
