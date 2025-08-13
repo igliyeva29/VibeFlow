@@ -10,17 +10,33 @@ class Place extends Model
     /** @use HasFactory<\Database\Factories\PlaceFactory> */
     use HasFactory;
 
-     public function location()
+    protected $guarded = [
+        'id',
+    ];
+    public $timestamps = true;
+
+    protected $fillable = [
+        'category_id',
+        'location_id',
+        'address',
+        'title',
+        'phone_number',
+        'email_address',
+        'isntagram_profile',
+        'tiktok_profile',
+    ];
+
+    public function location()
     {
         return $this->belongsTo(Location::class);
     }
 
-     public function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-           public function getTitle()
+    public function getTitle()
     {
         $locale = app()->getLocale();
 

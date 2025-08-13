@@ -17,24 +17,15 @@ class PlaceController extends Controller
 
         $f_q = $request->has('q') ? $request->q : null;
 
-        $category = Category::when(isset($f_q), function ($query) use ($f_q) {
-            return $query->where(function ($query) use ($f_q) {
-                $query->where('name', 'like', '%' . $f_q . '%');
-            });
-        })->firstOrFail();
-
         $places = Place::when(isset($f_q), function ($query) use ($f_q) {
             return $query->where(function ($query) use ($f_q) {
-                $query->where('name', 'like', '%' . $f_q . '%');
+                $query->where('title', 'like', '%' . $f_q . '%');
             });
         })
-            ->when(isset($category), function ($query) use ($f_q) {
-                return $query->where('category', $f_q);
-            })
             ->inRandomOrder()
             ->paginate(28)
             ->withQueryString();
-        ;
+
         // categories => Providers/AppServiceProvider.php
 
         return view('client.places.index')->with(

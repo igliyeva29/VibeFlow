@@ -9,6 +9,14 @@ class Location extends Model
 {
     /** @use HasFactory<\Database\Factories\LocationFactory> */
     use HasFactory;
+     protected $guarded = [
+        'id',
+    ];
+    public $timestamps = true;
+
+    protected $fillable = [
+        'name',
+    ];
 
      public function places()
     {

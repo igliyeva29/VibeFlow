@@ -2,20 +2,36 @@
 
 @section('content')
     <div class="container-xxl">
-        <div class="h4 mt-4 mb-3">
-            @lang('app.brands')
-        </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 gy-4 mb-5">
-            @foreach ($brands as $brand)
-                <div class="col">
-                    <div class="card">
-                        <div class="d-flex justify-content-between m-3">
-                            <div class="h4 text-primary">{{ $brand->name }}</div>
-                            <div class="text-secondary">{{ $brand->products_count }}</div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        <table class="table table-bordered my-4 text-center">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Address</th>
+                    <th>Phone number</th>
+                    <th>Email address</th>
+                    <th>Isntagram profile</th>
+                    <th>Tiktok profile</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($places as $place)
+                    <tr>
+                        <td>{{ $place->title}}</td>
+                        <td>{{ $place->category->name}}</td>
+                        <td>{{ $place->location->name}}</td>
+                        <td>{{ $place->address}}</td>
+                        <td>{{ $place->phone_number}}</td>
+                        <td>{{ $place->email_address}}</td>
+                        <td>{{ $place->instagram_profile}}</td>
+                        <td>{{ $place->tiktok_profile}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-3">
+        {{ $places->links('pagination::bootstrap-5') }}
     </div>
 @endsection

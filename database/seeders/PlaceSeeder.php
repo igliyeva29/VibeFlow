@@ -26,7 +26,6 @@ class PlaceSeeder extends Seeder
                 'category_id' => $category->id,
                 'location_id' => $location->id,
                 'slug' => fake()->slug(),
-                'name' => fake()->word(),
                 'address' => fake()->address(),
                 'title' => fake()->word(),
                 'title_tm' => null,

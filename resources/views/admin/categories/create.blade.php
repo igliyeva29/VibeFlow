@@ -7,12 +7,11 @@
             @lang('app.create', ['name' => 'category'])
         </div>
         <div class="row justify-content-center">
-
             <div class="col-3">
                 <form action="{{ route('admin.categories.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="category" class="form-label">@lang('app.category') :</label>
+                        <label for="category" class="form-label">@lang('app.category') : </label>
                         <select id="category" name="categoryId" class="form-select">
                             <option value="">-</option>
                             @foreach ($categories as $category)
@@ -24,7 +23,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label"> {{ __('app.subcategory') . " / " . __('app.category') }}<span
-                                class="text-danger">*</span>
+                                class="text-danger">*</span> : 
                         </label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
@@ -32,7 +31,7 @@
                     <div class="mb-3">
                         <label for="nameTm" class="form-label">
                             <span class="text-primary"><i class="bi bi-translate"></i> tm</span>
-                            {{ __('app.subcategory') . " / " . __('app.category') }}
+                            {{ __('app.subcategory') . " / " . __('app.category') }} : 
                         </label>
                         <input type="text" class="form-control" id="nameTm" name="nameTm">
                     </div>
@@ -40,7 +39,7 @@
                     <div class="mb-3">
                         <label for="nameRu" class="form-label">
                             <span class="text-primary"><i class="bi bi-translate"></i> ru</span>
-                            {{ __('app.subcategory') . " / " . __('app.category') }}
+                            {{ __('app.subcategory') . " / " . __('app.category') }} :
                         </label>
                         <input type="text" class="form-control" id="nameRu" name="nameRu">
                     </div>

@@ -16,7 +16,7 @@
             <form action="{{ route('login') }}" method="POST" class="col-10 col-md-8 col-lg-6 col-xl-4">
                 @csrf
                 <div class="display-4 text-center mb-4">
-                    <span class="text-primary fw-bolder">Techno</span>Mall
+                    <span class="text-primary fw-bolder">Vibe</span>Flow
                 </div>
                 <div class="w-100">
                     <label for="validationCustomUsername" class="form-label">@lang('app.username') </label>

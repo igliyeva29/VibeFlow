@@ -12,11 +12,15 @@
                         @lang('app.dashboard') </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('admin.categories.index') }}">@lang('app.categories')
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.categories.index') }}"><i class="bi bi-bookmarks"></i> @lang('app.categories')
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('admin.brands.index') }}">@lang('app.brands')
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.places.index') }}"><i class="bi bi-geo-alt"></i> @lang('app.places')
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.banners.index') }}"><i class="bi bi-image"></i> @lang('app.banners')
                     </a>
                 </li>
             </ul>

@@ -9,6 +9,18 @@ class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
+
+    protected $guarded = [
+        'id',
+    ];
+    public $timestamps = true;
+
+    protected $fillable = [
+        'parent_id',
+        'name',
+        'name_tm',
+        'name_ru',
+    ];
     
     public function parent()
     {

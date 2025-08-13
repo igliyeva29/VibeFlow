@@ -14,8 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $places = Place::orderBy('name')
-            ->get();
+        $places = Place::orderBy('created_at', 'desc')->paginate(28);
         
 
         return view('admin.dashboard.index')->with([
