@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\PlaceController;
 
 
 Route::get('', [HomeController::class, 'index'])->name('home');
+
 Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
 
 Route::controller(PlaceController::class)

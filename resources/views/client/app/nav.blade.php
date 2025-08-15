@@ -51,9 +51,9 @@
 
 <div class="shadow-sm mt-0 mb-3 pb-3">
     <div class="container-xxl">
-        <div class="d-flex">
+        <div class="d-flex ms-5">
             @foreach ($categories as $category)
-                <div class="d-inline me-5">
+                <div class="d-inline me-2">
                     <div class="btn-group h-100">
                         <a href="{{ route('places.index', array_merge(request()->query(), ['category' => $category->id])) }}"
                             class="btn btn-outline-primary">{{ $category->getName() }}</a>
@@ -70,12 +70,6 @@
                     </div>
                 </div>
             @endforeach
-            @if(request()->has('category'))
-                <div class="d-inline">
-                    <a href="{{ route('places.index', request()->except('category')) }}"
-                        class="btn btn-sm btn-secondary">@lang('app.clearCategory') </a>
-                </div>
-            @endif
         </div>
     </div>
 </div>

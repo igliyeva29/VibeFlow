@@ -28,8 +28,7 @@ class PlaceController extends Controller
             ->with('children')
             ->get();
 
-        $locations = Location::orderBy('name')
-            ->get();
+        $locations = Location::get();
 
         return view('admin.places.create')->with([
             'categories' => $categories,

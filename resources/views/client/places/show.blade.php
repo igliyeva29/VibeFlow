@@ -31,31 +31,31 @@
 
                     <table class="table  table-border">
                         <tr>
-                            <td class="fw-bolder">@lang('app.category'): </td>
-                            <td>{{ $place->category->parent->getName() . ' / ' . $place->category->getName() }}</td>
+                            <td class="fw-bolder"> <i class="bi bi-bookmarks"></i> @lang('app.category'): </td>
+                            <td>{{ $place->category->getName()}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.location'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-map"></i> @lang('app.location'): </td>
                             <td>{{ $place->location->name }}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.address'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-geo-alt"></i> @lang('app.address'): </td>
                             <td>{{ $place->address}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.phoneNumber'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-phone"></i> @lang('app.phoneNumber'): </td>
                             <td>{{ $place->phone_number}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.emailAddress'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-envelope"></i> @lang('app.emailAddress'): </td>
                             <td>{{ $place->email_address}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.isntagramProfile'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-instagram"></i> @lang('app.isntagramProfile'): </td>
                             <td>{{ $place->instagram_profile}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder">@lang('app.tiktokProfile'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-tiktok"></i> @lang('app.tiktokProfile'): </td>
                             <td>{{ $place->tiktok_profile}}</td>
                         </tr>
                     </table>

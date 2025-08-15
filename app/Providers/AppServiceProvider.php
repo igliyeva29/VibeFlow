@@ -29,5 +29,11 @@ class AppServiceProvider extends ServiceProvider
                 ->get();
             $view->with('categories', $categories);
         });
+        View::composer('client.app.filter', function ($view) {
+            $categories = Category::whereNull('parent_id')
+                ->with('children')
+                ->get();
+            $view->with('categories', $categories);
+        });
     }
 }

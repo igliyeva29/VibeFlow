@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index()
-    {   
+    {
         // $hotelId = Category::where('name', 'hotel')->firstOrFail();
         $cafes = Place::where('category_id', 9)->orderBy('created_at', 'desc')->take(4)->get();
         $education = Place::where('category_id', 15)->orderBy('created_at', 'desc')->take(4)->get();
