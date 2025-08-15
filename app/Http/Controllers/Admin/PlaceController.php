@@ -54,7 +54,7 @@ class PlaceController extends Controller
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images/places', 'public');
         }
-
+        
         $newPlace = Place::create([
             'user_id' => auth()->user()->id,
             'category_id' => $request->subCategoryId,
