@@ -6,7 +6,7 @@
         <div class="row gx-4">
             <div class="col-lg-5 mb-4 mb-lg-0">
                 <div class="main-image-display border rounded-3 p-3 text-center shadow-sm">
-                    <img src="{{ asset($place->image ?: 'img/places/defult.jpg') }}" class="img-fluid product-main-img"
+                    <img src="{{ asset($place->image ? 'storage/' . $place->image: 'img/places/defult.jpg') }}" class="img-fluid product-main-img"
                         alt="{{ $place->getTitle() }}">
                 </div>
             </div>
@@ -43,7 +43,7 @@
                             <td>{{ $place->address}}</td>
                         </tr>
                         <tr>
-                            <td class="fw-bolder"> <i class="bi bi-phone"></i> @lang('app.phoneNumber'): </td>
+                            <td class="fw-bolder"> <i class="bi bi-telephone"></i> @lang('app.phoneNumber'): </td>
                             <td>{{ $place->phone_number}}</td>
                         </tr>
                         <tr>

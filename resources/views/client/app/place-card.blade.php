@@ -2,7 +2,8 @@
     <div
         class="card h-100  border shadow-sm">
         <a href="{{ route('places.show', [$obj->slug]) }}" class="text-decoration-none">
-            <img src="{{asset($obj->image ?: 'img/places/defult.jpg') }}" class="card-img-top p-3" alt="{{ $obj->getTitle() }}">
+             <img src="{{ asset($obj->image ? 'storage/' . $obj->image : 'img/places/defult.jpg') }}"
+                class="card-img-top p-3" alt="{{ $obj->getTitle() }}">
             <div class="card-body d-flex flex-column">
                 <div class="card-title h5 fw-semibold ">{{ $obj->getTitle() }}
                 </div>

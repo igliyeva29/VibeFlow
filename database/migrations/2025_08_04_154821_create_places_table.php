@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('title_ru')->nullable();
             $table->foreignId('location_id')->constrained()->ondelete('cascade');
             $table->string('address');
-            $table->string('phone_number')->nullable();
+            $table->string('phone_number');
             $table->string('email_address')->nullable();
             $table->string('instagram_profile')->nullable();
             $table->string('tiktok_profile')->nullable();

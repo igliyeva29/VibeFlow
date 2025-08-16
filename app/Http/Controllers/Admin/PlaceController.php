@@ -22,6 +22,17 @@ class PlaceController extends Controller
             ->with('places', $places);
     }
 
+     public function show(string $id)
+    {
+        $place = Place::with(['category', 'location'])
+            ->where('id', $id)
+            ->firstOrFail();
+
+        return view('admin.places.show')->with([
+            'place' => $place,
+        ]);
+    }
+
     public function create()
     {
         $categories = Category::whereNull('parent_id')
@@ -38,7 +49,7 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'subCategoryId' => ['nullable', 'integer', 'min:1'],
+            'categoryId' => ['required', 'integer', 'min:1'],
             'title' => ['required', 'string', 'max:255'],
             'titleTm' => ['nullable', 'string', 'max:255'],
             'titleRu' => ['nullable', 'string', 'max:255'],
@@ -54,10 +65,10 @@ class PlaceController extends Controller
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images/places', 'public');
         }
-        
+
         $newPlace = Place::create([
             'user_id' => auth()->user()->id,
-            'category_id' => $request->subCategoryId,
+            'category_id' => $request->categoryId,
             'slug' => fake()->slug(),
             'title' => $request->title,
             'title_tm' => $request->titleTm,
@@ -76,6 +87,7 @@ class PlaceController extends Controller
         ]);
 
         $newPlace->slug = str($request->title)->slug() . "-" . $newPlace->id;
+        $newPlace->update();
 
         return to_route('admin.places.index')
             ->with('success', __('app.createdSuccessfully', ['name' => 'Place']));
@@ -87,15 +99,13 @@ class PlaceController extends Controller
 
         $category = Category::where('id', $id)->firstOrFail();
 
-        $parents = Category::whereNull('parent_id')
-            ->orderBy('name')
-            ->get();
+        $location = Location::get();
 
         return view('admin.places.edit')
             ->with([
                 'place' => $place,
                 'category' => $category,
-                'parents' => $parents,
+                'locations' => $location,
             ]);
     }
 
@@ -115,6 +125,10 @@ class PlaceController extends Controller
     public function destroy(string $id)
     {
         $place = Place::where('id', $id)->firstOrFail();
+
+        if ($place->image) {
+            Storage::disk('public')->delete($place->image);
+        }
 
 
         $place->delete();

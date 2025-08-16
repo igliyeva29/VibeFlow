@@ -9,7 +9,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
+            <a href="{{ route('places.index') }}" class="btn btn-outline-danger btn-lg fw-bold px-5">
                 @lang('app.all')
             </a>
         </div>
@@ -23,7 +23,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
+            <a href="{{ route('places.index') }}" class="btn btn-outline-danger btn-lg fw-bold px-5">
                 @lang('app.all')
             </a>
         </div>
@@ -38,7 +38,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline-danger btn-lg fw-bold px-5">
+            <a href="{{ route('places.index') }}" class="btn btn-outline-danger btn-lg fw-bold px-5">
                 @lang('app.all')
             </a>
         </div>
